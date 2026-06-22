@@ -1,4 +1,7 @@
-## Hi there 👋
+## Det här är hemsidan till matvagnen Röda Vagnen.
+Vårt utbud är alltid 100% växtbaserat.
+Vi är förnärvande inte i drift.
+👋
 
 <!--
 **Rodavagnen/rodavagnen** is a ✨ _special_ ✨ repository because its `README.md` (this file) appears on your GitHub profile.
