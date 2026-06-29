@@ -39,34 +39,34 @@
 
 <script>
   // Sparar den unika stämpeln för den HTML-sida som är laddad just nu
-  let nuvarandeEtag = null;
+  let currentEtag = null;
 
-  async function kontrolleraUppdatering() {
+  async function checkUpdate() {
     try {
       // Gör en HEAD-förfrågan (hämtar bara filinfo, inte hela HTML-koden)
-      const svar = await fetch(window.location.href, { method: 'HEAD', cache: 'no-cache' });
+      const resp = await fetch(window.location.href, { method: 'HEAD', cache: 'no-cache' });
       
       // Hämtar filens unika ETag (eller senast ändrad-datum om ETag saknas)
-      const nyEtag = svar.headers.get('ETag') || svar.headers.get('Last-Modified');
+      const newEtag = svar.headers.get('ETag') || svar.headers.get('Last-Modified');
 
-      if (nyEtag) {
+      if (newEtag) {
         // Första gången skriptet körs sparar vi bara det nuvarande värdet
-        if (!nuvarandeEtag) {
-          nuvarandeEtag = nyEtag;
+        if (!currentEtag) {
+          currentEtag = newEtag;
         } 
         // Om stämpeln har ändrats betyder det att HTML-koden har uppdaterats!
-        else if (nuvarandeEtag !== nyEtag) {
+        else if (currentEtag !== newEtag) {
           console.log("HTML-koden har ändrats! Laddar om sidan...");
           window.location.reload();
         }
       }
-    } catch (fel) {
-      console.error("Kunde inte kontrollera om HTML-filen uppdaterats:", fel);
+    } catch (err) {
+      console.error("Kunde inte kontrollera om HTML-filen uppdaterats:", err);
     }
   }
 
   // Kontrollera om koden har ändrats var 10:e sekund (10000 millisekunder)
-  setInterval(kontrolleraUppdatering, 10000);
+  setInterval(checkUpdate, 10000);
 </script>
 
 
