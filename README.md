@@ -1,6 +1,5 @@
 ## Det här är hemsidan till matvagnen Röda Vagnen.
 Vårt utbud är alltid 100% växtbaserat.
-Vi är förnärvande inte i drift.
 👋
 
 <!--
